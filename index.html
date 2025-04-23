@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily-Focus</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Authentication Section -->
+        <div id="auth-section" class="auth-section">
+            <div class="auth-container">
+                <h1>Daily-Focus</h1>
+                <p>Your productivity companion for daily goals and focused work.</p>
+                
+                <!-- Login Form -->
+                <div id="login-form" class="auth-form">
+                    <h2>Login</h2>
+                    <form id="login">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                    <p>Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
+                </div>
+                
+                <!-- Signup Form -->
+                <div id="signup-form" class="auth-form hidden">
+                    <h2>Create Account</h2>
+                    <form id="signup">
+                        <div class="form-group">
+                            <label for="signup-name">Name</label>
+                            <input type="text" id="signup-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">Email</label>
+                            <input type="email" id="signup-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">Password</label>
+                            <input type="password" id="signup-password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </form>
+                    <p>Already have an account? <a href="#" id="show-login">Login</a></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main App Section (hidden until logged in) -->
+        <div id="app-section" class="hidden">
+            <!-- Navigation -->
+            <nav class="navbar">
+                <div class="logo">
+                    <h1>Daily-Focus</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="active" id="nav-today">Today</a>
+                    <a href="#" id="nav-analytics">Analytics</a>
+                    <a href="#" id="nav-settings">Settings</a>
+                </div>
+                <div class="user-menu">
+                    <span id="user-name">User</span>
+                    <button id="logout-btn" class="btn btn-small">Logout</button>
+                </div>
+            </nav>
+            
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <!-- Today View -->
+                <div id="today-view" class="view">
+                    <div class="daily-goal-section">
+                        <h2>Today's Focus</h2>
+                        <div class="daily-goal-container">
+                            <textarea id="daily-goal" placeholder="What's your main focus for today?"></textarea>
+                            <button id="save-goal" class="btn btn-primary">Save Goal</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tasks-pomodoro-container">
+                        <!-- Tasks Section -->
+                        <div class="tasks-section">
+                            <h2>Tasks</h2>
+                            <div class="task-input-container">
+                                <input type="text" id="new-task" placeholder="Add a new task...">
+                                <button id="add-task" class="btn btn-circle"><i class="fas fa-plus"></i></button>
+                            </div>
+                            <ul id="task-list" class="task-list">
+                                <!-- Tasks will be added here dynamically -->
+                            </ul>
+                        </div>
+                        
+                        <!-- Pomodoro Section -->
+                        <div class="pomodoro-section">
+                            <h2>Pomodoro Timer</h2>
+                            <div class="timer-container">
+                                <div class="timer-display">
+                                    <span id="minutes">25</span>:<span id="seconds">00</span>
+                                </div>
+                                <div class="timer-mode">
+                                    <span id="timer-mode-display">Focus Mode</span>
+                                </div>
+                                <div class="timer-controls">
+                                    <button id="start-timer" class="btn btn-circle"><i class="fas fa-play"></i></button>
+                                    <button id="pause-timer" class="btn btn-circle hidden"><i class="fas fa-pause"></i></button>
+                                    <button id="reset-timer" class="btn btn-circle"><i class="fas fa-redo"></i></button>
+                                </div>
+                                <div class="pomodoro-stats">
+                                    <span>Completed today: <span id="completed-pomodoros">0</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Analytics View -->
+               <!-- Add this to your HTML file where you want the analytics view to appear -->
+<div id="analytics-view" class="view hidden">
+    <h2>Your Productivity Analytics</h2>
+    
+    <!-- Summary Cards -->
+    <div class="summary-cards" style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+        <div class="card" style="flex: 1; padding: 1rem;">
+            <h4>Today's Focus Time</h4>
+            <p id="focus-time-today" style="font-size: 1.5rem; color: #6366f1;">0 min</p>
+        </div>
+        <div class="card" style="flex: 1; padding: 1rem;">
+            <h4>Weekly Focus Time</h4>
+            <p id="focus-time-week" style="font-size: 1.5rem; color: #6366f1;">0 min</p>
+        </div>
+        <div class="card" style="flex: 1; padding: 1rem;">
+            <h4>Total Focus Time</h4>
+            <p id="focus-time-all" style="font-size: 1.5rem; color: #6366f1;">0 min</p>
+        </div>
+    </div>
+    
+    <!-- Charts will be added here by the analytics.js script -->
+</div>
+                <!-- Settings View -->
+                <div id="settings-view" class="view hidden">
+                    <h2>Settings</h2>
+                    <div class="settings-container">
+                        <div class="settings-section">
+                            <h3>Timer Settings</h3>
+                            <div class="setting-item">
+                                <label for="focus-duration">Focus Duration (minutes)</label>
+                                <input type="number" id="focus-duration" min="1" max="60" value="25">
+                            </div>
+                            <div class="setting-item">
+                                <label for="short-break-duration">Short Break Duration (minutes)</label>
+                                <input type="number" id="short-break-duration" min="1" max="30" value="5">
+                            </div>
+                            <div class="setting-item">
+                                <label for="long-break-duration">Long Break Duration (minutes)</label>
+                                <input type="number" id="long-break-duration" min="1" max="60" value="15">
+                            </div>
+                            <div class="setting-item">
+                                <label for="pomodoro-cycles">Pomodoros before long break</label>
+                                <input type="number" id="pomodoro-cycles" min="1" max="10" value="4">
+                            </div>
+                        </div>
+                        
+                        <div class="settings-section">
+                            <h3>Notification Settings</h3>
+                            <div class="setting-item">
+                                <label for="sound-notifications">Sound Notifications</label>
+                                <input type="checkbox" id="sound-notifications" checked>
+                            </div>
+                            <div class="setting-item">
+                                <label for="browser-notifications">Browser Notifications</label>
+                                <input type="checkbox" id="browser-notifications" checked>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-section">
+                            <h3>Account Settings</h3>
+                            <div class="setting-item">
+                                <label for="display-name">Display Name</label>
+                                <input type="text" id="display-name">
+                            </div>
+                            <button id="save-settings" class="btn btn-primary">Save Settings</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notification Sound -->
+    <audio id="notification-sound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="auto"></audio>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script src="app.js"></script>
+    <script src="pomodoro.js"></script>
+    <script src="tasks.js"></script>
+    <script src="analytics.js"></script>
+</body>
+</html>
